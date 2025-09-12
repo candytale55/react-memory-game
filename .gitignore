@@ -26,7 +26,7 @@ dist-ssr
 
 # temp files
 readme-draft.md
-*.private-items
+src/assets/private-items
 
 
 
