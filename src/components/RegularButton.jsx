@@ -1,8 +1,12 @@
 
 
-export default function RegularButton() {
-
+export default function RegularButton({ children, handleClick }) {
     return (
-        <h2>I am Regular Button</h2>
+        <button
+            className="btn btn--text"
+            onClick={handleClick}
+        >
+            {children}
+        </button>
     )
 }

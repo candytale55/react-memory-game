@@ -1,8 +1,12 @@
+import RegularButton from "./RegularButton"
 
-export default function Form() {
-    return (
-      <>
-        <h2>I am Form</h2>
-      </>
+
+export default function Form({ handleSubmit }) {
+  return (
+    <form className="wrapper">
+      <RegularButton handleClick={handleSubmit}>
+        Start Game
+      </RegularButton>
+    </form>
   )
 }
