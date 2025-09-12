@@ -1,3 +1,4 @@
+/* ===== CSS VARIABLES & RESET ===== */
 * {
   margin: 0;
 }
@@ -31,6 +32,7 @@ main {
   padding: 2em;
 }
 
+/* Form container with enhanced styling */
 .wrapper {
   display: flex;
   flex-direction: column;
@@ -79,6 +81,7 @@ Buttons
   cursor: pointer;
 }
 
+/* Start game button */
 .btn--text {
   background-color: var(--dark-primary);
   color: var(--light-primary);
@@ -88,6 +91,7 @@ Buttons
   padding: .25em .75em;
 }
 
+/* Memory cards - emoji display */
 .btn--emoji {
   width: 100%;
   height: 100px;
@@ -103,7 +107,7 @@ Buttons
 }
 
 /*===========================
-Form
+Form - Category & Number Selection
 ============================*/
 
 .form-container {
@@ -126,6 +130,7 @@ form {
   gap: .5em;
 }
 
+/* Dropdown selectors for game configuration */
 select {
   background-color: var(--dark-primary);
   color: var(--light-primary);
@@ -144,8 +149,9 @@ select:focus {
 }
 
 /*===========================
-Game
+Game - Card Grid & Animations
 ============================*/
+/* Responsive card grid */
 .card-container {
   padding-left: 0;
   display: grid;
@@ -158,7 +164,7 @@ Game
   list-style: none;
 }
 
-/* Animated memory card */
+/* Card flip animations and states */
 .card-item--selected,
 .card-item--matched,
 .btn--emoji__back--selected,
@@ -171,11 +177,13 @@ Game
   transform-style: preserve-3d;
 }
 
+/* Card face visibility during flip */
 .btn--emoji__front,
 .btn--emoji__back--selected {
   backface-visibility: hidden;
 }
 
+/* Matched cards - disabled state */
 .btn--emoji__back--matched {
   backface-visibility: unset;
   background-color: var(--btn-disabled);
@@ -183,6 +191,7 @@ Game
   cursor: not-allowed;
 }
 
+/* Unflipped card hover effects */
 .btn--emoji__front:hover,
 .btn--emoji__front:focus {
   background-color: var(--accent);
@@ -191,6 +200,7 @@ Game
   cursor: pointer;
 }
 
+/* Selected card highlighting */
 .card-item--selected .btn--emoji__back--selected {
   border: 2px solid var(--dark-primary);
   box-shadow: 0 0 5px 2px var(--light-primary);
@@ -214,7 +224,7 @@ Screen reader only
 }
 
 /*===========================
-Media queries
+Media queries - Responsive scaling
 ============================*/
 @media (min-width: 768px) {
   h1 {
