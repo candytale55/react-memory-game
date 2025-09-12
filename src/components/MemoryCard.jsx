@@ -1,8 +1,18 @@
 
 
-export default function MemoryCard() {
+export default function MemoryCard({ handleClick }) {
+    const emojiArray = ['🐶', '🐷', '🐙', '🐛', '🐵', '🐶', '🐷', '🐙', '🐛', '🐵']
 
-    return (
-        <h2>I am Memory Card</h2>
+    const emojiEl = emojiArray.map((emoji, index) =>
+        <li key={index} className="card-item">
+            <button
+                className="btn btn--emoji"
+                onClick={handleClick}
+            >
+                {emoji}
+            </button>
+        </li>
     )
+
+    return <ul className="card-container">{emojiEl}</ul>
 }
