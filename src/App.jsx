@@ -4,16 +4,23 @@ import Form from './components/Form'
 import MemoryCard from './components/MemoryCard'
 
 
-function App() {
-  const [count, setCount] = useState(0)
+export default function App() {
+  const [isGameOn, setIsGameOn] = useState(false)
+
+  function startGame(e) {
+    e.preventDefault()
+    setIsGameOn(true)
+  }
+
+  function turnCard() {
+    console.log("Memory card clicked")
+  }
 
   return (
-    <>
-      <h1>I am App</h1>
-      <Form />
-      <MemoryCard />
-    </>
+    <main>
+      <h1>Memory</h1>
+      {!isGameOn && <Form handleSubmit={startGame} />}
+      {isGameOn && <MemoryCard handleClick={turnCard} />}
+    </main>
   )
 }
-
-export default App
