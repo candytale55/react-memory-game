@@ -30,7 +30,7 @@ export default function App() {
         
         console.log("testing getRandomIndices(data):", getRandomIndices(data));
         console.log("testing getDataSlice(data):", getDataSlice(data))  
-        
+
         setEmojisData(emojisDataArray);
         
         setIsGameOn(true);  
@@ -43,12 +43,22 @@ export default function App() {
   
   function getDataSlice(data) {
     const randomIndices = getRandomIndices(data);
+    const dataSlice = randomIndices.map( index => data[index]);
+    return dataSlice;
+  }
+
+  /** TUTORIAL VERSION - getDataSlice(data)
+   * Will keep for reference in case my implementation mess up stuff.
+   * 
+  function getDataSlice(data) {
+    const randomIndices = getRandomIndices(data);
     const dataSlice = randomIndices.reduce((array, index) => {
       array.push(data[index]); 
       return array;
     }, [])
     return dataSlice;
   }
+  */
 
 
   function getRandomIndices(data) {
