@@ -124,17 +124,24 @@ export default function App() {
 
 
 
-  function turnCard() {
-    console.log("Memory card clicked")
+  function turnCard(name, index) {
+    console.log(`The emoji ${name} at index ${index} was clicked!`)
   }
 
   return (
     <main>
       <h1>Memory</h1>
       {!isGameOn && <Form handleSubmit={startGame} />}
-      {isGameOn && <MemoryCard handleClick={turnCard} />}
+      {isGameOn && <MemoryCard handleClick={turnCard} data={ emojisData } />}
     </main>
   )
 }
 
 
+/**
+ * Challenge:
+ * 1) MemoryCard: Pass emoji.name and index as arguments to the handleClick function that is called 
+      when clicking the button.
+ 
+ * 2) App: In the turnCard function, receive name and index as parameters and log them to the console.
+ */
