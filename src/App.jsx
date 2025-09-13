@@ -28,8 +28,9 @@ export default function App() {
         const emojisDataArray = data.slice(0, 5);
         console.log("emojisDataArray (first 5 emojis): ", emojisDataArray);
         
-        console.log("testing getRandomIndices(data)", getRandomIndices(data));
-          
+        console.log("testing getRandomIndices(data):", getRandomIndices(data));
+        console.log("testing getDataSlice(data):", getDataSlice(data))  
+        
         setEmojisData(emojisDataArray);
         
         setIsGameOn(true);  
@@ -38,6 +39,16 @@ export default function App() {
         console.error("Error:", error.message);
       }
     }
+
+  
+  function getDataSlice(data) {
+    const randomIndices = getRandomIndices(data);
+    const dataSlice = randomIndices.reduce((array, index) => {
+      array.push(data[index]); 
+      return array;
+    }, [])
+    return dataSlice;
+  }
 
 
   function getRandomIndices(data) {
@@ -52,7 +63,7 @@ export default function App() {
     return Array.from(randomIndicesSet);
   }
 
-  /** TUTORIAL VERSION
+  /** TUTORIAL VERSION - getRandomIndices(data)
    *  Keeping tutorial version commented for reference in case 
    *  my implementation messes things up later on
 
