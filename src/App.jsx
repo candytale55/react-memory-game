@@ -93,6 +93,38 @@ export default function App() {
   }
   */
 
+
+  function getEmojisArray(dataSlice) {
+    // Duplicate the Array:
+    const pairedEmojisArray = [...dataSlice, ...dataSlice];
+
+    // Shuffle using the Fisher–Yates algorithm
+    for (let i = pairedEmojisArray.length - 1; i > 0; i--){
+      const j = Math.floor(Math.random() * (i + 1));
+      [pairedEmojisArray[i], pairedEmojisArray[j]] = [pairedEmojisArray[j], pairedEmojisArray[i]];
+    }
+
+    return pairedEmojisArray; 
+  }
+
+  /** TUTORIAL Version getEmojisArray(data)
+   **  It's the same but instead of `dataSlice` uses `data`
+   *
+    async function getEmojisArray(data) {
+      const pairedEmojisArray = [...data, ...data]
+      // shuffle...
+      return pairedEmojisArray
+    }
+  * 
+  * * According to ChatGPT - In the tutorial version:
+  * * `data` was the **full API response** (all \~107 emojis in that category).
+  * * The function duplicated and shuffled **all 107 emojis**, not just the 5 the game needed.
+  * * Then the game would eventually only use the first few, but the shuffle was unnecessarily large.
+  * * The refactored version using `dataSlice` ensures you only duplicate and shuffle the **subset of emojis** actually used in the game board, which is more efficient.
+  * */
+
+
+
   function turnCard() {
     console.log("Memory card clicked")
   }
