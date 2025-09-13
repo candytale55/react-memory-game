@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 import './index.css'
 import Form from './components/Form'
@@ -9,7 +9,19 @@ export default function App() {
   const [isGameOn, setIsGameOn] = useState(false)
   const [emojisData, setEmojisData] = useState([]);
 
-  console.log("emojisData: ", emojisData)
+  const [selectedCards, setSelectedCards] = useState([]);
+  
+  // Log Tests
+  useEffect(() => {
+    console.log("selectedCards updated:", selectedCards);
+  }, [selectedCards]);
+
+  // TUTORIAL SOLUTION, but I useEffect works better for me
+  // console.log("This is the simple log of selectedCards", selectedCards);
+
+  useEffect(() => { 
+    console.log("emojisData: ", emojisData)
+  }, [emojisData]);
 
     async function startGame(e) {
       e.preventDefault()
@@ -23,13 +35,13 @@ export default function App() {
           }
             
         const data = await response.json();
-        console.log("Fetched data from API: ", data);
+        //console.log("Fetched data from API: ", data);
 
         const dataSlice = getDataSlice(data);
-        console.log("testing getDataSlice(data):", dataSlice)  
+        //console.log("testing getDataSlice(data):", dataSlice)  
 
         const emojisDataArray = getEmojisArray(dataSlice);
-        console.log("emojisDataArray (first 5 emojis): ", emojisDataArray);
+        //console.log("emojisDataArray (first 5 emojis): ", emojisDataArray);
         
         setEmojisData(emojisDataArray);
         setIsGameOn(true);  
@@ -125,7 +137,9 @@ export default function App() {
 
 
   function turnCard(name, index) {
-    console.log(`The emoji ${name} at index ${index} was clicked!`)
+    // console.log(`The emoji ${name} at index ${index} was clicked!`);
+    setSelectedCards([{ name, index }]);
+    
   }
 
   return (
@@ -140,8 +154,11 @@ export default function App() {
 
 /**
  * Challenge:
- * 1) MemoryCard: Pass emoji.name and index as arguments to the handleClick function that is called 
-      when clicking the button.
- 
- * 2) App: In the turnCard function, receive name and index as parameters and log them to the console.
+ * 1) Create a new variable in state, "selectedCards", with a matching setter function. 
+ * Initialize it as an empty array.
+ * 
+ * 2) In the turnCard function, set the value of "selectedCards" to be an array containing 
+ * one item: an object with two key-value pairs, where the values are the function parameters.
+ * 
+ * 3) Log "selectedCards" to the console.
  */

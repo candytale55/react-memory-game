@@ -15,19 +15,4 @@ export default function MemoryCard({ handleClick, data }) {
     return <ul className="card-container">{emojiEl}</ul>
 }
 
-/**
- * Challenge:
- * 1) Pass emoji.name and index as arguments to the handleClick function that is called when 
- *    clicking the button.
- * 
- * App → MemoryCard: App passes the function turnCard as a prop called handleClick. 
- *      At this point, App is just giving MemoryCard a reference to a function; no data 
- *      is being sent yet.
- * MemoryCard → App: MemoryCard uses that function inside its buttons. When a button is clicked,
- *      MemoryCard calls the function, passing the emoji’s name and index as arguments. 
- *      That’s how data flows from MemoryCard back to App.
- * 
- * So the key distinction is:
- * App provides the function (callback).
- * MemoryCard calls the function with data when an event occurs.
- */
+
