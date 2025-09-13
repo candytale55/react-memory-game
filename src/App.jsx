@@ -19,30 +19,22 @@ export default function App() {
       const response = await fetch("https://emojihub.yurace.pro/api/all/category/animals-and-nature");
 
         if (!response.ok) {
+          throw new Error("Failed to fetch emoji data from API");
+        }
           
-          throw new Error("Failed to fetch emojis");
+        const data = await response.json();
+        console.log("Fetched data from API: ", data);
 
-        } else {
-          
-          const data = await response.json();
-          console.log("Fetched data: ", data);
-          setIsGameOn(true);
+        const emojisDataArray = data.slice(0, 5);
+        console.log("emojisDataArray (first 5 emojis): ", emojisDataArray);
 
-          const dataSample = data.slice(0, 5);
-          console.log("dataSample : ", dataSample);
-
-          setEmojisData(dataSample);
-          
-      }
-
+        setEmojisData(emojisDataArray);
+      
+        setIsGameOn(true);  
+      
     } catch (error) { 
-
       console.error("Error:", error.message);
-
     }
-
-
-    setIsGameOn(true)
   }
 
   function turnCard() {
