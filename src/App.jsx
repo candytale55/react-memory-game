@@ -13,15 +13,18 @@ export default function App() {
   
   // Log Tests
   useEffect(() => {
-    console.log("selectedCards updated:", selectedCards);
+    console.log("selectedCards updated:", JSON.stringify(selectedCards, null, 2));
   }, [selectedCards]);
 
   // TUTORIAL SOLUTION, but I useEffect works better for me
   // console.log("This is the simple log of selectedCards", selectedCards);
 
+
+  /*
   useEffect(() => { 
     console.log("emojisData: ", emojisData)
   }, [emojisData]);
+  */
 
     async function startGame(e) {
       e.preventDefault()
@@ -41,7 +44,7 @@ export default function App() {
         //console.log("testing getDataSlice(data):", dataSlice)  
 
         const emojisDataArray = getEmojisArray(dataSlice);
-        //console.log("emojisDataArray (first 5 emojis): ", emojisDataArray);
+        //console.log("emojisDataArray(dataSlice): ", emojisDataArray);
         
         setEmojisData(emojisDataArray);
         setIsGameOn(true);  
@@ -136,10 +139,20 @@ export default function App() {
 
 
 
+
   function turnCard(name, index) {
     // console.log(`The emoji ${name} at index ${index} was clicked!`);
-    setSelectedCards([{ name, index }]);
+
+    const isCardSelected = selectedCards.find(card => card.index === index)
     
+     if (isCardSelected && selectedCards.length === 1)  console.log("Pick another card you cheat!") 
+
+    if (isCardSelected === undefined && selectedCards.length < 2) {
+      setSelectedCards(prev => [...prev, { name, index }])
+  
+    } else if (!isCardSelected && selectedCards.length === 2 ) {
+      setSelectedCards([{ name, index }])
+    }
   }
 
   return (
@@ -152,13 +165,11 @@ export default function App() {
 }
 
 
-/**
- * Challenge:
- * 1) Create a new variable in state, "selectedCards", with a matching setter function. 
- * Initialize it as an empty array.
- * 
- * 2) In the turnCard function, set the value of "selectedCards" to be an array containing 
- * one item: an object with two key-value pairs, where the values are the function parameters.
- * 
- * 3) Log "selectedCards" to the console.
- */
+/*
+* 1) Check if the clicked card is already in the selectedCards array. Store the result of this check in a variable called "selectedCardEntry".
+* 2) Update the code that adds a clicked card to "selectedCards". Make sure that the following conditions are met:
+* - Any given card can only be added once within the same round.
+* - The length of the "selectedCards" array should never exceed 2.
+* 3) Log "selectedCards" to the console.
+* 💡 Hint: Use the JavaScript .find() method to solve step 1.
+*/
