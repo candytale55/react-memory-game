@@ -41,9 +41,25 @@ export default function App() {
 
 
   function getRandomIndices(data) {
+
+    const randomIndicesSet = new Set;
+
+    while (randomIndicesSet.size < 5) {
+      const randomNum = Math.floor(Math.random() * data.length);
+      randomIndicesSet.add(randomNum);
+    }
+
+    return Array.from(randomIndicesSet);
+  }
+
+  /** TUTORIAL VERSION
+   *  Keeping tutorial version commented for reference in case 
+   *  my implementation messes things up later on
+
+  function getRandomIndices(data) {
     const randomIndicesArray = [];
 
-    for (let i = 0; i < 5; i++){
+    for (let i = 0; i < 5; i++) {
       const randomNum = Math.floor(Math.random() * data.length);
 
       if (!randomIndicesArray.includes(randomNum)) {
@@ -54,6 +70,7 @@ export default function App() {
     };
     return randomIndicesArray;
   }
+  */
 
   function turnCard() {
     console.log("Memory card clicked")
