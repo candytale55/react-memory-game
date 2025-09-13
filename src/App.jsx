@@ -25,14 +25,13 @@ export default function App() {
         const data = await response.json();
         console.log("Fetched data from API: ", data);
 
-        const emojisDataArray = data.slice(0, 5);
+        const dataSlice = getDataSlice(data);
+        console.log("testing getDataSlice(data):", dataSlice)  
+
+        const emojisDataArray = getEmojisArray(dataSlice);
         console.log("emojisDataArray (first 5 emojis): ", emojisDataArray);
         
-        console.log("testing getRandomIndices(data):", getRandomIndices(data));
-        console.log("testing getDataSlice(data):", getDataSlice(data))  
-
         setEmojisData(emojisDataArray);
-        
         setIsGameOn(true);  
         
       } catch (error) { 
