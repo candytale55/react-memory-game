@@ -6,12 +6,12 @@ import MemoryCard from './components/MemoryCard'
 
 
 export default function App() {
-  const [isGameOn, setIsGameOn] = useState(false)
+  const [isGameOn, setIsGameOn] = useState(false);
   const [emojisData, setEmojisData] = useState([]);
 
   const [selectedCards, setSelectedCards] = useState([]);
-  const [matchedCards, setMatchedCards] = useState([])
-
+  const [matchedCards, setMatchedCards] = useState([]);
+  const [isGameOver, setIsGameOver] = useState(false);
 
   
   // Log Tests
@@ -23,13 +23,22 @@ export default function App() {
   // console.log("This is the simple log of selectedCards", selectedCards);
 
   useEffect(() => {
-    // Step 2 code goes here!
+
     if (selectedCards.length === 2 && selectedCards[0].name === selectedCards[1].name) {
 
       setMatchedCards(prev => [...prev, ...selectedCards])
       console.log("Matched", selectedCards)
     }
   }, [selectedCards])
+
+  
+  useEffect(() => {
+    if (emojisData.length && matchedCards.length === emojisData.length) {
+      setIsGameOver(true)
+    }
+  }, [matchedCards, emojisData])
+  console.log("is Game Over? ", isGameOver);
+
 
   /*
   useEffect(() => { 
@@ -177,8 +186,12 @@ export default function App() {
 
 
 /**
-     * Challenge:
-     * 1) Create a new state variable, "matchedCards", with a corresponding setter function. Initialize it as an empty array.
-     * 2) If "selectedCards" contain two matching cards, use the useEffect hook to add these card objects to "matchedCards". Make sure to not override the previous state of "matchedCards".
-     * 💡 Hint: Use the array spread operator to solve step 2.
-     */
+ * Challenge:
+ * 1) Create a new state variable, "isGameOver", with a corresponding setter function. Initialize the variable as false.
+ * 2) Create a new useEffect that sets "isGameOver" to true when all memory cards have been matched and the game is over. Make sure to consider the following:
+ *      - What value should we use in the dependencies array?
+ *      - What condition can we use to determine whether the game is over?
+ */
+
+
+
