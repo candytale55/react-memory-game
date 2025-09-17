@@ -10,6 +10,9 @@ export default function App() {
   const [emojisData, setEmojisData] = useState([]);
 
   const [selectedCards, setSelectedCards] = useState([]);
+  const [matchedCards, setMatchedCards] = useState([])
+
+
   
   // Log Tests
   useEffect(() => {
@@ -19,6 +22,14 @@ export default function App() {
   // TUTORIAL SOLUTION, but I useEffect works better for me
   // console.log("This is the simple log of selectedCards", selectedCards);
 
+  useEffect(() => {
+    // Step 2 code goes here!
+    if (selectedCards.length === 2 && selectedCards[0].name === selectedCards[1].name) {
+
+      setMatchedCards(prev => [...prev, ...selectedCards])
+      console.log("Matched", selectedCards)
+    }
+  }, [selectedCards])
 
   /*
   useEffect(() => { 
@@ -165,11 +176,9 @@ export default function App() {
 }
 
 
-/*
-* 1) Check if the clicked card is already in the selectedCards array. Store the result of this check in a variable called "selectedCardEntry".
-* 2) Update the code that adds a clicked card to "selectedCards". Make sure that the following conditions are met:
-* - Any given card can only be added once within the same round.
-* - The length of the "selectedCards" array should never exceed 2.
-* 3) Log "selectedCards" to the console.
-* 💡 Hint: Use the JavaScript .find() method to solve step 1.
-*/
+/**
+     * Challenge:
+     * 1) Create a new state variable, "matchedCards", with a corresponding setter function. Initialize it as an empty array.
+     * 2) If "selectedCards" contain two matching cards, use the useEffect hook to add these card objects to "matchedCards". Make sure to not override the previous state of "matchedCards".
+     * 💡 Hint: Use the array spread operator to solve step 2.
+     */
