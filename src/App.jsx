@@ -184,14 +184,52 @@ export default function App() {
   )
 }
 
+/*
+
+# Style the Memory Cards
+
+Summary:
+Right now, the App keeps track of which cards are selected/matched,
+but the cards themselves don’t know their own status (they only know
+their name + index). That’s why we can’t style them properly yet.
+
+Next step:
+Create a new component called EmojiButton (in components/).
+It will replace the raw <button> inside MemoryCard.
+This sets the stage for passing more info/status to each card so
+they can style themselves correctly later.
+*/
+
+/*
+Details on data flow:
+
+- App component:
+  Holds all the state: emojisData, selectedCards, matchedCards.
+  Also has the logic (useEffect + turnCard) to track which cards
+  are selected/matched.
+
+- MemoryCard component:
+  Receives emojisData as a prop from App.
+  Inside, we map over emojisData → for each emoji we pass:
+    • emoji.name
+    • index in the array
+    • plus handleClick (turnCard fn) back to App
+
+- What each MemoryCard knows:
+  Just its own name + index (from props).
+  When clicked, it reports back to App via turnCard.
+
+- What it doesn’t know:
+  Its own status (whether selected or matched).
+  That info lives in App’s state and is not passed down yet.
+*/
+
 
 /**
- * Challenge:
- * 1) Create a new state variable, "isGameOver", with a corresponding setter function. Initialize the variable as false.
- * 2) Create a new useEffect that sets "isGameOver" to true when all memory cards have been matched and the game is over. Make sure to consider the following:
- *      - What value should we use in the dependencies array?
- *      - What condition can we use to determine whether the game is over?
+ * Challenge 8:
+ * 1) In the components folder, create a new component, "EmojiButton". The component should return an HTML button element equivalent to the button in the "MemoryCard" component.
+ * 2) Refactor the "MemoryCard" component to render the new "EmojiButton" instead of the current HTML button element. Pass three props to the "EmojiButton": "content" (the emoji itself), "style" (the class names) and "handleclick" (the function reference).
+ * 3) Rename the "emojiEl" variable to "cardEl" to make it clear that we create the card here in the "MemoryCard" component while the emoji itself is rendered in the "EmojiButton" component.
+ * 4) In the "App" component, log "selectedCards" to the console. Run the code and click some cards to check that your refactored code is working.
  */
-
-
 

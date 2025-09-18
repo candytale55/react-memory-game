@@ -1,4 +1,5 @@
 import { decodeEntity } from 'html-entities'
+import EmojiButton from './EmojiButton'
 
 export default function MemoryCard({ handleClick, data }) {
     const emojiEl = data.map((emoji, index) =>
@@ -9,6 +10,7 @@ export default function MemoryCard({ handleClick, data }) {
             >
                 {decodeEntity(emoji.htmlCode[0])}
             </button>
+            <EmojiButton />
         </li>
     )
 
