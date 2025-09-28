@@ -177,7 +177,7 @@ export default function App() {
 
   return (
     <main>
-      <h1>Memory</h1>
+      <h1>Emoji 😆 Memory</h1>
       {!isGameOn && <Form handleSubmit={startGame} />}
       {isGameOn && <MemoryCard
         handleClick={turnCard}
