@@ -1,13 +1,23 @@
 
 
-export default function EmojiButton({style, handleClick, content}) {
+export default function EmojiButton({
+  style, handleClick, content, selectedCardEntry, matchedCardEntry}) {
     
-    return (
+  const btnContent = selectedCardEntry || matchedCardEntry ? content : "?";
+  
+  return (
       <button
         className={ style }
         onClick={ handleClick }
       >
-        { content }
+        { btnContent }
       </button>
     )
 }
+
+/**
+ * Challenge:
+ * 2) Create a new variable, "btnContent", and use "selectedCardEntry" and "matchedCardEntry" that you receive as props to conditionally assign a value to it. If a card is either matched or selected, "btnContent" should be the value of the "content" prop; otherwise, it should be a question mark.
+ * 3) Render "btnContent" as the content of the button.
+ * 💡 Hint: Use a ternary operator to solve step 2.
+ */
