@@ -161,13 +161,12 @@ export default function App() {
 
 
   function turnCard(name, index) {
-    // console.log(`The emoji ${name} at index ${index} was clicked!`);
+    /*console.log(`The emoji ${name} at index ${index} was clicked!`);*/
 
-    const isCardSelected = selectedCards.find(card => card.index === index)
     
-     if (isCardSelected && selectedCards.length === 1)  console.log("Pick another card you cheat!") 
+     if (selectedCards.length === 1)  console.log("Pick another card you cheat!") 
 
-    if (isCardSelected === undefined && selectedCards.length < 2) {
+    if (selectedCards.length < 2) {
       setSelectedCards(prev => [...prev, { name, index }])
   
     } else if (!isCardSelected && selectedCards.length === 2 ) {
