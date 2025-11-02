@@ -16,6 +16,7 @@ export default function MemoryCard({ handleClick, data, selectedCards, matchedCa
           handleClick={() => handleClick(emoji.name, index)}
           selectedCardEntry={selectedCardEntry}
           matchedCardEntry={matchedCardEntry}
+          index={index}
         />
       </li>
     )
@@ -23,9 +24,4 @@ export default function MemoryCard({ handleClick, data, selectedCards, matchedCa
 
   return <ul className="card-container">{cardEl}</ul>
 }
-
-/**
-    We need to pass the complete emoji to the EmojiButton to make it accessible.
-    We are going to move the decoding from MemoryCard into EmojiButton
- */
 
