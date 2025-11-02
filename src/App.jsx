@@ -169,7 +169,7 @@ export default function App() {
     if (selectedCards.length < 2) {
       setSelectedCards(prev => [...prev, { name, index }])
   
-    } else if (!isCardSelected && selectedCards.length === 2 ) {
+    } else if (selectedCards.length === 2 ) {
       setSelectedCards([{ name, index }])
     }
   }
