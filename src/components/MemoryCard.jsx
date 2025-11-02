@@ -1,4 +1,3 @@
-import { decodeEntity } from 'html-entities'
 import EmojiButton from './EmojiButton'
 
 export default function MemoryCard({ handleClick, data, selectedCards, matchedCards }) {
@@ -13,7 +12,7 @@ export default function MemoryCard({ handleClick, data, selectedCards, matchedCa
     return (
       <li key={index} className={`card-item ${cardStyle}`}>
         <EmojiButton
-          content={decodeEntity(emoji.htmlCode[0])}
+          emoji={emoji}
           handleClick={() => handleClick(emoji.name, index)}
           selectedCardEntry={selectedCardEntry}
           matchedCardEntry={matchedCardEntry}
@@ -26,11 +25,7 @@ export default function MemoryCard({ handleClick, data, selectedCards, matchedCa
 }
 
 /**
- * Challenge:
- * 1) Create a new variable, "cardStyle", and conditionally assign it a value depending on whether a card is selected, matched or neither. Use the following values:
- *      a) Selected card: "card-item--selected".
- *      b) Matched card: "card-item--matched".
- *      c) Neither: "".
- * 2) Add "cardStyle" to the existing class set on the li element.
+    We need to pass the complete emoji to the EmojiButton to make it accessible.
+    We are going to move the decoding from MemoryCard into EmojiButton
  */
 

@@ -1,13 +1,14 @@
+import { decodeEntity } from 'html-entities'
 
 
 export default function EmojiButton({
-  content,
+  emoji, 
   handleClick,
   selectedCardEntry,
   matchedCardEntry
 }) {
 
-  const btnContent = selectedCardEntry || matchedCardEntry ? content : "?"
+  const btnContent = selectedCardEntry || matchedCardEntry ? decodeEntity(emoji.htmlCode[0]) : "?"
 
   const btnStyle =
     matchedCardEntry ? "btn--emoji__back--matched" :
@@ -24,15 +25,3 @@ export default function EmojiButton({
     </button>
   )
 }
-
-/** EmojiButton
-
-     * Challenge:
-     * Add a disabled attribute to the button and give it a value that is thruthy when a card is matched, otherwise falsy.
-
-      Check moving with KEYBOARD, it should skip the card
-*/
-/**
-     * Challenge:  Emojibutton and Appp
-     * Refactor the onClick event handler. Use a ternary operator to set the value to null if a card is selected, otherwise "handleClick".
-     */
